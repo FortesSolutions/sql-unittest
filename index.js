@@ -47,9 +47,17 @@ let insert = async(db, tableName, data) => {
     queries.push(queryColumnNamePart + queryValuePart);    
   });
 
-  for(var i in query)
-    await dbEachPromise(db, query[i], []);
+  for(var i in queries)
+    await dbRunQuery(db, query[i], []);
 }
+
+const dbRunQuery = (db, query, param) => new Promise((resolve, reject) => {
+  db.all(query,param, (err, out) => {
+    if (err !== null) return reject(err);
+
+    resolve(out);
+  });
+});
 
 let queryInsertData = value => {
   let queryColumnNamePart = "";
