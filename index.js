@@ -24,15 +24,73 @@ let addColumns = schema => {
     query += query + ", ";
   }
 
-  if (query.length !== 0)
-    query = removeLastComma(query);
+  query = removeLastCommaAtEnd(query);
 
   return query;
 }
 
-let removeLastComma = query => query.substring(0, query.length - 2);
+let insert = async(db, tableName, data) => {
+  let queries = [];
+ 
+  data.forEach(function(value){
+    let queryColumnNamePart = insertCommand() + tableName + openParanthesis();
+    let queryValuePart = valueCommand() + openParanthesis();
+
+    let insertData = queryInsertData(value);
+
+    queryColumnNamePart += insertData.queryColumnNamePart;
+    queryValuePart += insertData.queryValuePart;
+    
+    queryColumnNamePart += closeParanthesis();
+    queryValuePart += closeParanthesis();
+
+    queries.push(queryColumnNamePart + queryValuePart);    
+  });
+
+  for(var i in query)
+    await dbEachPromise(db, query[i], []);
+}
+
+let queryInsertData = value => {
+  let queryColumnNamePart = "";
+  let queryValuePart = "";
+
+  for (var key in value){
+    queryColumnNamePart += key + ", ";
+
+    if (!isString(value[key]))
+      queryValuePart += value[key] + ", ";
+    else
+      queryValuePart += "\'" + value[key] + "\'" + ", ";
+  }
+
+  queryColumnNamePart = removeLastCommaAtEnd(queryColumnNamePart);
+  queryValuePart = removeLastCommaAtEnd(queryValue);
+
+  return {
+    queryColumnNamePart: queryColumnNamePart,
+    queryValuePart: queryValuePart
+  }
+
+}
+
+let isString = value => {
+  return typeof value !== 'string' ? false:true
+}
+
+let removeLastCommaAtEnd = query => {
+
+  if(query.length !== 0)
+    return query.substring(0, query.length - 2);
+
+  return query;
+}
 
 let createTableCommand = () => constants.CREATE_TABLE;
+
+let insertCommand = () => constants.INSERT;
+
+let valueCommand = () => constants.VALUES;
 
 let openParanthesis = () => constants.OPEN_PARANTHESIS;
 
