@@ -109,3 +109,46 @@ let valueCommand = () => constants.VALUES;
 let openParanthesis = () => constants.OPEN_PARANTHESIS;
 
 let closeParanthesis = () => constants.CLOSE_PARATHESIS;
+
+const AssertLength = (results, expectedLength) => {
+  if(results.length === expectedLength)
+    return assert.ok(true, "Actual number of records is equivalent to expected value");
+  else
+    return assert.ok(false, "Actual number of records is " + results.length);
+}
+
+const AssertContains = (results, expected) => {
+  if(containExpected(results, expected))
+    return assert.ok(true, "Record present");
+  else
+    return assert.ok(false, "Records not present");
+}
+
+const containsExpected = (results, expected) => {
+  for(var eKey in expected) {
+    
+    if(!containExpectedKey(eKey, expected[eKey], results))
+      return false;
+  }
+
+  return true;
+}
+
+const containExpectedKey = (key, value, results) => {
+  for(var i in results){
+    
+    if(results[i].hasOwnProperty(key) && results[i][key] === value)
+      return true;
+  }
+
+  return false;
+}
+
+module.exports = {
+  instantiateDb: instantiateDb,
+  createTable: createTable,
+  insert: insert,
+  execute: execute,
+  AssertContains: AssertContains,
+  AssertLength: AssertLength
+}
