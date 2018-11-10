@@ -51,6 +51,12 @@ let insert = async(db, tableName, data) => {
     await dbRunQuery(db, query[i], []);
 }
 
+let execute = async(db, query, param) => {
+  let result = await dbRunQuery(db, query, param);
+  
+  return result; 
+}
+
 const dbRunQuery = (db, query, param) => new Promise((resolve, reject) => {
   db.all(query,param, (err, out) => {
     if (err !== null) return reject(err);
