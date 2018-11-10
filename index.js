@@ -118,23 +118,42 @@ const AssertLength = (results, expectedLength) => {
 }
 
 const AssertContains = (results, expected) => {
-  if(containExpected(results, expected))
+  
+  if(containsExpected(results, expected))
     return assert.ok(true, "Record present");
   else
     return assert.ok(false, "Records not present");
 }
 
+const AssertNotContains = (results, expected) => {
+
+  if (notContainsExpected(results, expected))
+    return assert.ok(true, "Record not present");
+  else
+    return assert.ok(false, "Records present");
+}
+
+const notContainsExpected = (results, expected) => {
+  for (var eKey in expected) {
+    
+    if(!containsExpectedKey(eKey, expected[eKey], results))
+      return true;
+  }
+
+  return false;
+}
+
 const containsExpected = (results, expected) => {
   for(var eKey in expected) {
     
-    if(!containExpectedKey(eKey, expected[eKey], results))
+    if(!containsExpectedKey(eKey, expected[eKey], results))
       return false;
   }
 
   return true;
 }
 
-const containExpectedKey = (key, value, results) => {
+const containsExpectedKey = (key, value, results) => {
   for(var i in results){
     
     if(results[i].hasOwnProperty(key) && results[i][key] === value)
@@ -150,5 +169,6 @@ module.exports = {
   insert: insert,
   execute: execute,
   AssertContains: AssertContains,
+  AssertNotContains: AssertNotContains,
   AssertLength: AssertLength
 }
