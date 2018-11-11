@@ -1,12 +1,12 @@
-const CREATE_TABLE = "CREATE TABLE";
+const CREATE_TABLE = "CREATE TABLE ";
 
 const OPEN_PARANTHESIS = " (";
 
 const CLOSE_PARANTHESIS = " )";
 
-const INSERT = "INSERT INTO";
+const INSERT = "INSERT INTO ";
 
-const VALUES = "VALUES";
+const VALUES = " VALUES";
 
 module.exports = {
     CREATE_TABLE: CREATE_TABLE,
