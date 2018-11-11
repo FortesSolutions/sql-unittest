@@ -21,7 +21,7 @@ let addColumns = schema => {
   for (key in schema) {
     query += key + " ";
     query += schema[key];
-    query += query + ", ";
+    query += ", ";
   }
 
   query = removeLastCommaAtEnd(query);
@@ -48,7 +48,7 @@ let insert = async(db, tableName, data) => {
   });
 
   for(var i in queries)
-    await dbRunQuery(db, query[i], []);
+    await dbRunQuery(db, queries[i], []);
 }
 
 let execute = async(db, query, param) => {
@@ -79,7 +79,7 @@ let queryInsertData = value => {
   }
 
   queryColumnNamePart = removeLastCommaAtEnd(queryColumnNamePart);
-  queryValuePart = removeLastCommaAtEnd(queryValue);
+  queryValuePart = removeLastCommaAtEnd(queryValuePart);
 
   return {
     queryColumnNamePart: queryColumnNamePart,
@@ -108,7 +108,7 @@ let valueCommand = () => constants.VALUES;
 
 let openParanthesis = () => constants.OPEN_PARANTHESIS;
 
-let closeParanthesis = () => constants.CLOSE_PARATHESIS;
+let closeParanthesis = () => constants.CLOSE_PARANTHESIS;
 
 const AssertLength = (results, expectedLength) => {
   if(results.length === expectedLength)
@@ -120,17 +120,17 @@ const AssertLength = (results, expectedLength) => {
 const AssertContains = (results, expected) => {
   
   if(containsExpected(results, expected))
-    return assert.ok(true, "Record present");
+    return assert.ok(true, "The given record is present in results");
   else
-    return assert.ok(false, "Records not present");
+    return assert.ok(false, "The given record is not present in results");
 }
 
 const AssertNotContains = (results, expected) => {
 
   if (notContainsExpected(results, expected))
-    return assert.ok(true, "Record not present");
+    return assert.ok(true, "The given record is not present in results");
   else
-    return assert.ok(false, "Records present");
+    return assert.ok(false, "The given record is present in results");
 }
 
 const notContainsExpected = (results, expected) => {
