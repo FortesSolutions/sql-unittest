@@ -46,8 +46,10 @@ A package for writing unit tests for SQL queries.
      searchObject -> JSON object to be searched in the results array.
 
   * AssertLength(results, expectedLength) -> checks whether the number of records is equal to the expected length.
-    results -> Array of records.
-    expectedLength -> integer
+
+  #####    Parameters
+     results -> Array of records.
+     expectedLength -> integer denoting the expected number of records.
   
 ## Example
 
