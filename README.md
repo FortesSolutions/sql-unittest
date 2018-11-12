@@ -4,10 +4,31 @@ A package for writing unit tests for SQL queries.
 
 ## Usage
 
-Basic idea behind the module is to simulate a databse instance to allow it to fill with mock tables and data relevant to the query being tested. 
+This package allows assert methods for writing unit tests for sql queries to check number of records and whether an object is present or not in the results of the test query.
+
+The package simulates a databse instance to allow it to fill with mock tables and data relevant to the query being tested. 
 Then, the test query can be run against this instance created and get the results.
-The module provides methods to test whether a record is present or not in the results and to test for the number of
-Following steps are required to write unit tests in mocha.
+Then unit tests can be written.
+
+Following steps are required to write unit tests in before hook in mocha.
+1) First a db instance needs to be created ( instantiateDb())
+
+2) Create the tables relevant to the query being tested (createTable()).
+
+3) Insert the data in the table. (insert())
+
+4) Run the query being tested. (execute())
+
+For the unit tests following asserts are provided
+1) assertLength -> Check whether the number of records in the results of test query is equal to the given value.
+
+2) assertContains -> Check whether the given object is present in the results of the test query.
+
+3) assertNotContains -> Check whether the given object is not present in the results of the test query.
+
+Then in after hook
+1) Close the db conncection (closeDb())
+
 
 ## List of Functions
 
