@@ -2,28 +2,35 @@
 
 A package for writing unit tests for SQL queries.
 
+## Usage
+
+Basic idea behind the module is to simulate a databse instance to allow it to fill with mock tables and data relevant to the query being tested. 
+Then, the test query can be run against this instance created and get the results.
+The module provides methods to test whether a record is present or not in the results and to test for the number of
+Following steps are required to write unit tests in mocha.
+
 ## List of Functions
 
-  * instantiateDb() -> instantiate mock database.
+* instantiateDb() -> instantiate mock database.
 
   #####    Return
      Returns the database instance created.
 
-  * createTable(databaseName, tableName, tableSchema) -> creates table in the database specified by databaseName. 
+* createTable(databaseName, tableName, tableSchema) -> creates table in the database specified by databaseName. 
 
   #####    Parameters
      databaseName -> should be the database instance created by instantiateDb function.
      tableName -> should be a string specifing the name of table to be created.
      tableSchema -> should be a JSON object with column names as keys and column data type as values.
 
-  * insert(databaseName, tableName, data) -> inserts data in the database specified by databaseName
+* insert(databaseName, tableName, data) -> inserts data in the database specified by databaseName
 
   #####    Parameters
      databaseName -> should be the database instance created by instantiateDb function.
      tableName -> should be a string specifing the name of table to be created.
      data -> should be an array of JSON objects with column names as keys and value of that column name as values for the JSON object.
 
-  * execute(databaseName, testQuery, testQueryParameters) -> runs the testQuery with testQueryParameters
+* execute(databaseName, testQuery, testQueryParameters) -> runs the testQuery with testQueryParameters
 
   #####    Parameters
      databaseName -> should be the database instance created by instantiateDb function.
@@ -33,19 +40,19 @@ A package for writing unit tests for SQL queries.
   #####    Return
      Returns the results got after running the test query.
 
-  * AssertContains(results, searchObject) -> asserts that the searchObject is present in the test query results.
+* AssertContains(results, searchObject) -> asserts that the searchObject is present in the test query results.
 
   #####    Parameters
      results -> Array of records.
      searchObject -> JSON object to be searched in the results array.
 
-  * AssertNotContains(results, searchObject) -> asserts that the searchObject is not present in the test query results.
+* AssertNotContains(results, searchObject) -> asserts that the searchObject is not present in the test query results.
 
   #####    Parameters
      results -> Array of records.
      searchObject -> JSON object to be searched in the results array.
 
-  * AssertLength(results, expectedLength) -> checks whether the number of records is equal to the expected length.
+* AssertLength(results, expectedLength) -> checks whether the number of records is equal to the expected length.
 
   #####    Parameters
      results -> Array of records.
