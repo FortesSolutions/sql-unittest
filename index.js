@@ -57,6 +57,10 @@ let execute = async(db, query, param) => {
   return result; 
 }
 
+let closeDb = db => {
+  db.close();
+}
+
 const dbRunQuery = (db, query, param) => new Promise((resolve, reject) => {
   db.all(query,param, (err, out) => {
     if (err !== null) return reject(err);
@@ -168,6 +172,7 @@ module.exports = {
   createTable: createTable,
   insert: insert,
   execute: execute,
+  closeDb: closeDb,
   AssertContains: AssertContains,
   AssertNotContains: AssertNotContains,
   AssertLength: AssertLength
