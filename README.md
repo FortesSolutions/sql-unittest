@@ -4,30 +4,51 @@ A package for writing unit tests for SQL queries.
 
 ## List of Functions
 
-  1) instantiateDb() -> instantiate mock database.
+  * instantiateDb() -> instantiate mock database.
 
-  ##### Return
+  #####    Return
      Returns the database instance created.
 
-  2) createTable(databaseName, tableName, tableSchema) -> creates table in the database specified by databaseName. 
+  * createTable(databaseName, tableName, tableSchema) -> creates table in the database specified by databaseName. 
 
-  ##### Parameters
+  #####    Parameters
      databaseName -> should be the database instance created by instantiateDb function.
      tableName -> should be a string specifing the name of table to be created.
      tableSchema -> should be a JSON object with column names as keys and column data type as values.
 
-  3) insert(databaseName, tableName, data) -> inserts data in the database specified by databaseName
+  * insert(databaseName, tableName, data) -> inserts data in the database specified by databaseName
 
-  ##### Parameters
+  #####    Parameters
      databaseName -> should be the database instance created by instantiateDb function.
      tableName -> should be a string specifing the name of table to be created.
      data -> should be an array of JSON objects with column names as keys and value of that column name as values for the JSON object.
 
-  execute(databaseName, testQuery, testQueryParameters) -> runs the testQuery with testQueryParameters
-  AssertContains: AssertContains,
-  AssertNotContains: AssertNotContains,
-  AssertLength: AssertLength
+  * execute(databaseName, testQuery, testQueryParameters) -> runs the testQuery with testQueryParameters
 
+  #####    Parameters
+     databaseName -> should be the database instance created by instantiateDb function.
+     testQuery -> the query being tested enclosed within ``.
+     testQueryParameters(optional) -> if the testQuery contains parameters, they can be passed as an array.
+
+  #####    Return
+     Returns the results got after running the test query.
+
+  * AssertContains(results, searchObject) -> asserts that the searchObject is present in the test query results.
+
+  #####    Parameters
+     results -> Array of records.
+     searchObject -> JSON object to be searched in the results array.
+
+  * AssertNotContains(results, searchObject) -> asserts that the searchObject is not present in the test query results.
+
+  #####    Parameters
+     results -> Array of records.
+     searchObject -> JSON object to be searched in the results array.
+
+  * AssertLength(results, expectedLength) -> checks whether the number of records is equal to the expected length.
+    results -> Array of records.
+    expectedLength -> integer
+  
 ## Example
 
 Below is an example of a test suite with mocha framework.
