@@ -61,6 +61,11 @@ Then in after hook
   #####    Return
      Returns the results got after running the test query.
 
+* closeDb(databaseName) -> close the database connection
+
+  #####    Parameters
+     databaseName -> should be the database instance created by instantiateDb function.
+     
 * AssertContains(results, searchObject) -> asserts that the searchObject is present in the test query results.
 
   #####    Parameters
@@ -131,7 +136,7 @@ describe('Testing contacts query', () => {
     });
     
     after(function(){
-        db.close();
+        unitTest.closeDb(db);
     });
 
     //Test Cases
