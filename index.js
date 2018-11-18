@@ -57,6 +57,12 @@ let execute = async(db, query, param) => {
   return result; 
 }
 
+let deleteAll = async(db, tableName) => {
+  let query = deleteAllCommand() + tableName;
+
+  await db.run(query);
+}
+
 let closeDb = db => {
   db.close();
 }
@@ -113,6 +119,12 @@ let valueCommand = () => constants.VALUES;
 let openParanthesis = () => constants.OPEN_PARANTHESIS;
 
 let closeParanthesis = () => constants.CLOSE_PARANTHESIS;
+
+let deleteCommand = () => constants.DELETE;
+
+let deleteAllCommand = () => constants.DELETE_ALL;
+
+let whereCommand = () => constants.WHERE;
 
 const AssertLength = (results, expectedLength) => {
   if(results.length === expectedLength)
