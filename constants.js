@@ -8,11 +8,7 @@ const INSERT = "INSERT INTO ";
 
 const VALUES = " VALUES";
 
-const DELETE = "DELETE FROM ";
-
 const DELETE_ALL = "DELETE * FROM ";
-
-const WHERE = " WHERE";
 
 module.exports = {
     CREATE_TABLE: CREATE_TABLE,
@@ -20,7 +16,5 @@ module.exports = {
     CLOSE_PARANTHESIS: CLOSE_PARANTHESIS,
     INSERT: INSERT,
     VALUES: VALUES,
-    DELETE: DELETE,
-    WHERE: WHERE,
     DELETE_ALL: DELETE_ALL
 }

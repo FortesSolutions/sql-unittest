@@ -120,11 +120,7 @@ let openParanthesis = () => constants.OPEN_PARANTHESIS;
 
 let closeParanthesis = () => constants.CLOSE_PARANTHESIS;
 
-let deleteCommand = () => constants.DELETE;
-
 let deleteAllCommand = () => constants.DELETE_ALL;
-
-let whereCommand = () => constants.WHERE;
 
 const AssertLength = (results, expectedLength) => {
   if(results.length === expectedLength)
@@ -175,7 +171,7 @@ const containsExpectedKey = (key, value, results) => {
     if(results[i].hasOwnProperty(key) && results[i][key] === value)
       return true;
   }
-
+ 
   return false;
 }
 
@@ -183,9 +179,10 @@ module.exports = {
   instantiateDb: instantiateDb,
   createTable: createTable,
   insert: insert,
+  deleteAll: deleteAll,
   execute: execute,
   closeDb: closeDb,
   AssertContains: AssertContains,
   AssertNotContains: AssertNotContains,
-  AssertLength: AssertLength
+  AssertLength: AssertLength,
 }
