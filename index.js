@@ -63,6 +63,27 @@ let deleteAll = async(db, tableName) => {
   await db.run(query);
 }
 
+let runQuery = async(db, query, param) => {
+  let result = await dbRunQuery(db, query, param);
+  
+  return result; 
+}
+
+let runDataManipulationQuery = async(db, tableName, query, param) => {
+
+  await dbRunQuery(db, query, param);
+
+  let result = await selectAllFromTable(db, tableName);
+  return result;
+}
+
+let selectAllFromTable = async(db, tableName) => {
+  let query = selectAllCommand() + tableName;
+
+  let result = await db.run(query);
+  return result;
+}
+
 let closeDb = db => {
   db.close();
 }
@@ -121,6 +142,8 @@ let openParanthesis = () => constants.OPEN_PARANTHESIS;
 let closeParanthesis = () => constants.CLOSE_PARANTHESIS;
 
 let deleteAllCommand = () => constants.DELETE_ALL;
+
+let selectAllCommand = () => constants.SELECT_ALL_COMMAND;
 
 const AssertLength = (results, expectedLength) => {
   if(results.length === expectedLength)
@@ -185,4 +208,6 @@ module.exports = {
   AssertContains: AssertContains,
   AssertNotContains: AssertNotContains,
   AssertLength: AssertLength,
+  runDataManipulationQuery: runDataManipulationQuery,
+  runQuery: runQuery
 }
