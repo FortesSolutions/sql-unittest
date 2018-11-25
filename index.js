@@ -80,7 +80,7 @@ let runDataManipulationQuery = async(db, tableName, query, param) => {
 let selectAllFromTable = async(db, tableName) => {
   let query = selectAllCommand() + tableName;
 
-  let result = await db.run(query);
+  let result = await dbrunQuery(db, query);
   return result;
 }
 
