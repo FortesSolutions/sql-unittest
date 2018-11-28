@@ -12,7 +12,7 @@ let createTable = async (db, tableName, schema) => {
   query += addColumns(schema);
   query += closeParanthesis();
 
-  await db.run(query);
+  await dbRunQuery(db, query);
 }
 
 let addColumns = schema => {
