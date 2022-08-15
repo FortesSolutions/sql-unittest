@@ -1,6 +1,6 @@
 {
   "name": "sql-unittest",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "Package to unit test sql queries",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^1.4.1",
-    "sqlite3": "^4.0.3"
+    "sqlite3": "^5.0.0"
   }
 }
